@@ -1,52 +1,60 @@
-Note Summary AI API
+# 📝 Note Summary AI API – Backend Candidate Assignment
 
-Bu proje, kullanıcıların notlarını kaydedip özetlemesine yardımcı olan bir Spring Boot + JWT Authentication tabanlı backend API’sidir.
-Swagger UI üzerinden tüm endpointler test edilebilir.
+Bu proje, **Spring Boot + JWT Authentication** kullanarak basit bir REST API sağlar.  
+Kullanıcılar not ekleyebilir, notları AI ile özetletebilir ve durumunu takip edebilir.  
+Deployment Railway üzerinde yapılmıştır.
 
-🚀 Live Swagger UI
+This project provides a simple REST API using **Spring Boot + JWT Authentication**.  
+Users can add notes, summarize them with AI, and track the status.  
+The project is deployed on Railway.
 
-🔗 Swagger UI (Production - Railway)
+---
 
-📦 Kurulum ve Çalıştırma (Türkçe)
-Gereksinimler
+## 🌐 Canlı Swagger UI | Live Swagger UI
 
-Java 17+
+🔗 [Production Swagger UI](https://remarkable-truth-production.up.railway.app/swagger-ui.html)
 
-Maven
+---
 
-PostgreSQL
+## 🚀 Kurulum ve Çalıştırma (Türkçe)
 
-Git
+### Gereksinimler
+- Java 17+
+- Maven
+- PostgreSQL
+- Git
 
-Çalıştırma Adımları
+### Adımlar
+1. Repoyu klonlayın:
+   ```bash
+   git clone https://github.com/cakmaak/Note-summary-Ai-api.git
+   cd Note-summary-Ai-api
+PostgreSQL bilgilerinizi application.properties veya .env dosyasına ekleyin:
 
-Repoyu klonlayın:
-
-git clone https://github.com/cakmaak/Note-summary-Ai-api.git
-cd Note-summary-Ai-api
-
-
-application.properties dosyasında PostgreSQL bilgilerinizi girin:
-
+properties
+Kodu kopyala
 spring.datasource.url=jdbc:postgresql://localhost:5432/notedb
 spring.datasource.username=postgres
 spring.datasource.password=yourpassword
 spring.jpa.hibernate.ddl-auto=update
-
-
 Projeyi build edin ve çalıştırın:
 
+bash
+Kodu kopyala
 mvn clean install
 mvn spring-boot:run
+Swagger UI üzerinden API’yi test edin:
 
-
-Swagger UI’a erişin:
-
+bash
+Kodu kopyala
 http://localhost:8080/swagger-ui.html
+Production linki:
 
-📦 Setup & Run (English)
+arduino
+Kodu kopyala
+https://remarkable-truth-production.up.railway.app/swagger-ui.html
+🚀 Setup & Run (English)
 Requirements
-
 Java 17+
 
 Maven
@@ -56,54 +64,86 @@ PostgreSQL
 Git
 
 Steps
-
 Clone the repository:
 
+bash
+Kodu kopyala
 git clone https://github.com/cakmaak/Note-summary-Ai-api.git
 cd Note-summary-Ai-api
+Configure PostgreSQL in application.properties or .env:
 
-
-Configure your PostgreSQL connection in application.properties:
-
+properties
+Kodu kopyala
 spring.datasource.url=jdbc:postgresql://localhost:5432/notedb
 spring.datasource.username=postgres
 spring.datasource.password=yourpassword
 spring.jpa.hibernate.ddl-auto=update
-
-
 Build & run the project:
 
+bash
+Kodu kopyala
 mvn clean install
 mvn spring-boot:run
+Test the API via Swagger UI:
 
-
-Access Swagger UI:
-
+bash
+Kodu kopyala
 http://localhost:8080/swagger-ui.html
+Production link:
 
+arduino
+Kodu kopyala
+https://remarkable-truth-production.up.railway.app/swagger-ui.html
 🔑 Authentication (JWT)
+POST /ainoteapi/signup → Yeni kullanıcı oluşturur / Create a new user
 
-POST /ainoteapi/signup → Yeni kullanıcı oluşturur
+POST /ainoteapi/login → JWT token döner / Returns JWT token
 
-POST /ainoteapi/login → JWT token döner
+Korumalı endpointler için Authorization: Bearer <token> header’ı gerekir.
 
-Tüm korunan endpointlere erişmek için Authorization: Bearer <token> header’ı eklenmelidir.
+📝 Core Features
+Users – ADMIN ve AGENT rollerine sahip.
+
+Notes – Not ekleme, durum takibi (queued|processing|done|failed), AI özetleme.
+
+Asenkron “AI summarize” job (stub veya rule-based).
+
+Swagger üzerinden tüm endpointler test edilebilir.
+
+Users – with roles ADMIN and AGENT.
+
+Notes – create notes, track status (queued|processing|done|failed), summarize with AI.
+
+Async “AI summarize” job (stub or rule-based).
+
+All endpoints testable via Swagger UI.
 
 🌍 Deployment
-
-Railway üzerinde otomatik olarak deploy edilir.
+Railway üzerinde otomatik olarak deploy edilmiştir.
 
 Production URL:
 
+arduino
+Kodu kopyala
 https://remarkable-truth-production.up.railway.app
-
-
 Production Swagger:
 
+arduino
+Kodu kopyala
 https://remarkable-truth-production.up.railway.app/swagger-ui.html
+Automatically deployed on Railway.
 
-📚 Kullanılan Teknolojiler | Technologies Used
+Production URL:
 
+arduino
+Kodu kopyala
+https://remarkable-truth-production.up.railway.app
+Swagger UI:
+
+arduino
+Kodu kopyala
+https://remarkable-truth-production.up.railway.app/swagger-ui.html
+🛠 Kullanılan Teknolojiler | Technologies Used
 Java 17
 
 Spring Boot
@@ -115,3 +155,4 @@ PostgreSQL
 Swagger (springdoc-openapi)
 
 Railway (Deployment)
+
