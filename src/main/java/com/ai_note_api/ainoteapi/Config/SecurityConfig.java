@@ -18,7 +18,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.ai_note_api.ainoteapi.Security.JwtAuthFilter; 
 
-
+import java.util.Arrays;
 
 @Configuration
 public class SecurityConfig {
@@ -31,14 +31,15 @@ public class SecurityConfig {
         this.userDetailsService = userDetailsService;
     }
 
-    
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.addAllowedOrigin("http://localhost:5173"); 
-        configuration.addAllowedOrigin("https://remarkable-truth-production.up.railway.app"); 
-        configuration.addAllowedHeader("*");
-        configuration.addAllowedMethod("*");
+        configuration.setAllowedOrigins(Arrays.asList(
+            "http://localhost:5173",
+            "https://remarkable-truth-production.up.railway.app"
+        ));
+        configuration.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE","OPTIONS"));
+        configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -46,7 +47,6 @@ public class SecurityConfig {
         return source;
     }
 
-    
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
@@ -55,17 +55,18 @@ public class SecurityConfig {
             .cors(cors -> {}) 
             .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
-                    .requestMatchers(
-                    		"/ainoteapi/signup", "/ainoteapi/login",
-                            "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html","/ainoteapi/saveadmin",
-                            "/v3/api-docs/**",
-                            "/swagger-ui/**",
-                            "/swagger-ui.html",
-                            "/swagger-resources/**",
-                            "/webjars/**"
-                   
-                    ).permitAll()
-                    .anyRequest().authenticated()
+                // Auth ve Swagger endpoint’lerini bypass et
+                .requestMatchers(
+                    "/ainoteapi/signup",
+                    "/ainoteapi/login",
+                    "/ainoteapi/saveadmin",
+                    "/v3/api-docs/**",
+                    "/swagger-ui/**",
+                    "/swagger-ui.html",
+                    "/swagger-resources/**",
+                    "/webjars/**"
+                ).permitAll()
+                .anyRequest().authenticated()
             )
             .authenticationProvider(daoAuthenticationProvider())
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
