@@ -55,7 +55,7 @@ public class SecurityConfig {
             .cors(cors -> {}) 
             .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
-                /
+                
                 .requestMatchers(
                     "/ainoteapi/signup",
                     "/ainoteapi/login",
