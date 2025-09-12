@@ -60,12 +60,15 @@ public class SecurityConfig {
                 	    "/ainoteapi/signup",
                 	    "/ainoteapi/login",
                 	    "/ainoteapi/saveadmin",
+                	    "/v3/api-docs",
                 	    "/v3/api-docs/**",
                 	    "/swagger-ui.html",
                 	    "/swagger-ui/**",
+                	    "/swagger-resources",
                 	    "/swagger-resources/**",
                 	    "/webjars/**",
-                	    "/configuration/**"
+                	    "/configuration/ui",
+                	    "/configuration/security"
                 ).permitAll()
                 .anyRequest().authenticated()
             )
