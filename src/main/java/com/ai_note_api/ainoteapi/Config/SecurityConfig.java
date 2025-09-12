@@ -57,14 +57,15 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 
                 .requestMatchers(
-                    "/ainoteapi/signup",
-                    "/ainoteapi/login",
-                    "/ainoteapi/saveadmin",
-                    "/v3/api-docs/**",
-                    "/swagger-ui/**",
-                    "/swagger-ui.html",
-                    "/swagger-resources/**",
-                    "/webjars/**"
+                	    "/ainoteapi/signup",
+                	    "/ainoteapi/login",
+                	    "/ainoteapi/saveadmin",
+                	    "/v3/api-docs/**",
+                	    "/swagger-ui.html",
+                	    "/swagger-ui/**",
+                	    "/swagger-resources/**",
+                	    "/webjars/**",
+                	    "/configuration/**"
                 ).permitAll()
                 .anyRequest().authenticated()
             )
