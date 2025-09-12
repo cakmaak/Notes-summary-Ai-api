@@ -36,7 +36,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList(
             "http://localhost:5173",
-            "https://remarkable-truth-production.up.railway.app"
+            "https://remarkable-truth-production.up.railway.app/"
         ));
         configuration.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE","OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
@@ -55,7 +55,7 @@ public class SecurityConfig {
             .cors(cors -> {}) 
             .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
-                // Auth ve Swagger endpoint’lerini bypass et
+                /
                 .requestMatchers(
                     "/ainoteapi/signup",
                     "/ainoteapi/login",
