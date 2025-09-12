@@ -36,7 +36,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.addAllowedOrigin("http://localhost:5173"); 
-        configuration.addAllowedOrigin("https://senin-frontend-domain.com"); 
+        configuration.addAllowedOrigin("https://remarkable-truth-production.up.railway.app"); 
         configuration.addAllowedHeader("*");
         configuration.addAllowedMethod("*");
         configuration.setAllowCredentials(true);
